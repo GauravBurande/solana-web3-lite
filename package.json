@@ -1,0 +1,54 @@
+{
+  "name": "solana-web3-lite",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -b",
+    "test": "jest",
+    "lint": "eslint .",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "solana",
+    "web3",
+    "blockchain",
+    "crypto",
+    "solana-web3",
+    "javascript",
+    "typescript"
+  ],
+  "author": "Gaurav Burande <gaurav@gauravvan.com> (https://gauravvan.com)",
+  "license": "MIT",
+  "description": "A lightweight wrapper around @solana/web3.js for simplified Solana blockchain interactions",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gauravburande/solana-web3-lite.git"
+  },
+  "homepage": "https://github.com/gauravburande/solana-web3-lite#readme",
+  "bugs": {
+    "url": "https://github.com/gauravburande/solana-web3-lite/issues"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/node": "^22.13.11",
+    "@typescript-eslint/eslint-plugin": "^7.1.1",
+    "@typescript-eslint/parser": "^7.1.1",
+    "eslint": "^8.57.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.2",
+    "typescript": "^5.4.3"
+  },
+  "engines": {
+    "npm": ">=7.0.0",
+    "node": ">=16.0.0"
+  },
+  "files": [
+    "dist/**/*"
+  ],
+  "dependencies": {
+    "@solana-developers/helpers": "^2.8.1",
+    "@solana/web3.js": "^1.98.0"
+  }
+}
