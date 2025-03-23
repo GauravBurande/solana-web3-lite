@@ -103,7 +103,7 @@ async function sendDevnetFunds() {
 
 ### Create and transfer a token to a recipient Address
 
-This doesn't create the token metadata, we have `craeteTokenWithMetadata` for that.
+This doesn't create the token metadata, we have `createTokenWithMetadata` for that.
 
 ```javascript
 async function createTokenAndTransferToMe() {
