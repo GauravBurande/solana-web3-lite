@@ -101,6 +101,31 @@ async function sendDevnetFunds() {
 }
 ```
 
+### Create and transfer a token to a recipient Address
+
+This doesn't create the token metadata, we have `craeteTokenWithMetadata` for that.
+
+```javascript
+async function createTokenAndTransferToMe() {
+  const mintWallet = Keypair.generate();
+  const recipientAddress = "RECIPIENT_PUBLIC_KEY_HERE";
+
+  const { signature, mintPublicKey, transaction } =
+    await createAndTransferToken({
+      mintWallet,
+      recipientAddress,
+      amount: 1000,
+      decimals: 9, // Optional: default is 9
+      cluster: "devnet", // Optional: default is "devnet"
+      commitment: "confirmed", // Optional: default is "confirmed"
+    });
+
+  console.log("Transaction signature:", signature);
+  console.log("Mint public key:", mintPublicKey);
+  console.log("Transaction details:", transaction);
+}
+```
+
 ## API Reference
 
 ### airdrop(options)
@@ -122,11 +147,31 @@ async function sendDevnetFunds() {
 - `amount`: Number - Amount of SOL to send
 - `cluster`: String (optional) - "mainnet-beta" | "testnet" | "devnet" | "localnet"
 
+### createAndTransferToken(options)
+
+Creates a new token mint and transfers tokens to a recipient address.
+
+- `mintWallet`: Keypair - The keypair used to create the token mint
+- `recipientAddress`: String - Solana address to receive the tokens
+- `amount`: Number - Amount of tokens to transfer
+- `decimals`: Number (optional) - Number of decimal places for the token (default: 9)
+- `cluster`: String (optional) - Solana network to use ("mainnet-beta", "testnet", "devnet"; default: "devnet")
+- `commitment`: String (optional) - Commitment level for transaction confirmation ("processed", "confirmed", "finalized"; default: "confirmed")
+
+#### createAndTransferToken Returns
+
+An object containing:
+
+- `signature`: String - The transaction signature
+- `mintPublicKey`: String - The public key of the created token mint
+- `transaction`: Object - The complete transaction details
+
 ## Requirements
 
 - Node.js
 - `@solana/web3.js` (peer dependency)
 - `@solana-developers/helpers` (peer dependency)
+- `@solana/spl-token` (peer dependency)
 
 ## License
 
