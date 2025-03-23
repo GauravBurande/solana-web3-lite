@@ -113,19 +113,20 @@ async function sendDevnetFunds() {
 ### showBalance(options)
 
 - `address`: String - Solana address to check
-- `cluster`: String - "devnet" or "custom"
+- `cluster`: String (optional) - "mainnet-beta" | "testnet" | "devnet" | "localnet"
 
 ### transfer(options)
 
 - `keyPair`: Keypair - Sender's keypair
 - `recipientAddress`: String - Recipient's Solana address
 - `amount`: Number - Amount of SOL to send
-- `cluster`: String - "devnet" or "custom"
+- `cluster`: String (optional) - "mainnet-beta" | "testnet" | "devnet" | "localnet"
 
 ## Requirements
 
 - Node.js
 - `@solana/web3.js` (peer dependency)
+- `@solana-developers/helpers` (peer dependency)
 
 ## License
 
