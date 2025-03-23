@@ -109,8 +109,7 @@ async function sendDevnetFunds() {
 
 - `address`: String - Solana address to receive funds
 - `amount`: Number - Amount of SOL to request
-- `cluster`: String - "devnet" or "custom"
-- `customRpcUrl`: String (optional) - Custom RPC URL
+- `cluster`: String (optional) - "devnet" as default
 - `commitment`: String (optional) - Commitment level
 
 ### showBalance(options)
