@@ -22,7 +22,7 @@ export const airdrop = async ({
     if (amount <= 0) throw new Error("Airdrop amount must be greater than 0.");
     if (cluster === "mainnet-beta") {
       throw new Error(
-        "Airdrops are not available on Mainnet Beta unless using the localnet a custom RPC URL."
+        "Airdrops are not available on Mainnet Beta unless using the localnet or a custom RPC URL."
       );
     }
     if (cluster === "devnet" && amount > 100) {
@@ -62,7 +62,7 @@ export const airdrop = async ({
 
     const explorerLink = getExplorerLink("transaction", signature, cluster);
 
-    console.log(`✅ Airdrop confirmed: ${explorerLink}`);
+    console.log(`✅ Airdrop confirmed, visit the explorer: ${explorerLink}`);
     return signature;
   } catch (error) {
     console.error("Airdrop failed:", error);

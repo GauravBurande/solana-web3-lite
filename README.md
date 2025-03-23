@@ -15,8 +15,7 @@ npm install solana-web3-lite
 - Simplified airdrop requests
 - Easy balance checking
 - Streamlined SOL transfers
-- Support for different clusters (devnet, custom)
-- Custom RPC URL support
+- Support for different clusters (devnet, localnet)
 - Configurable commitment levels
 
 ## Usage Examples
@@ -38,14 +37,13 @@ async function requestDevnetFunds() {
   }
 }
 
-// Using a custom RPC URL (defaults to "http://localhost:8899" if not provided)
+// Using the localnet RPC URL ("http://localhost:8899")
 async function requestCustomFunds() {
   try {
     const signature = await airdrop({
       address: "YourSolanaAddressHereAsString",
       amount: 5, // 5 SOL
-      cluster: "custom",
-      customRpcUrl: "http://localhost:9988",
+      cluster: "localnet",
     });
     console.log("Custom airdrop completed:", signature);
   } catch (error) {
@@ -59,7 +57,7 @@ async function requestConfirmedFunds() {
     const signature = await airdrop({
       address: "YourSolanaAddressHereAsString",
       amount: 3, // 3 SOL
-      cluster: "custom",
+      cluster: "testnet",
       commitment: "processed",
     });
     console.log("Processed airdrop completed:", signature);
@@ -76,7 +74,7 @@ async function checkBalance() {
   try {
     const balance = await showBalance({
       publicKey: "YourSolanaAddressHereAsString",
-      cluster: "custom", // Defaults to "http://localhost:8899"
+      cluster: "localnet", // Defaults to "http://localhost:8899"
     });
     console.log(`Current balance: ${balance} SOL`);
   } catch (error) {
@@ -114,7 +112,7 @@ async function sendDevnetFunds() {
 
 ### showBalance(options)
 
-- `publicKey`: String - Solana address to check
+- `address`: String - Solana address to check
 - `cluster`: String - "devnet" or "custom"
 
 ### transfer(options)
