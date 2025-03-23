@@ -41,9 +41,12 @@
     "typescript": "^5.4.3"
   },
   "engines": {
-    "npm": ">=7.0.0",
-    "node": ">=16.0.0"
+    "node": ">=20.18.0",
+    "npm": "please-use-pnpm",
+    "pnpm": "^10",
+    "yarn": "please-use-pnpm"
   },
+  "packageManager": "pnpm@10.5.0",
   "files": [
     "dist/**/*"
   ],

@@ -1,5 +1,3 @@
-// TODO: EDIT THIS FILE
-
 import {
   Connection,
   Commitment,
