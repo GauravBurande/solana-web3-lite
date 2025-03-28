@@ -8,12 +8,11 @@ import {
 
 import {
   Keypair,
-  PublicKey,
   sendAndConfirmTransaction,
   Transaction,
   Commitment,
 } from "@solana/web3.js";
-import { getConnection } from "./utils";
+import { getConnection, toPublicKey } from "./utils";
 import { getExplorerLink } from "@solana-developers/helpers";
 
 interface TokenParams {
@@ -46,7 +45,7 @@ export const createAndTransferToken = async ({
     if (decimals < 0) throw new Error("Decimals must be non-negative");
 
     const connection = getConnection({ cluster, commitment });
-    const recipientPubKey = new PublicKey(recipientAddress);
+    const recipientPubKey = toPublicKey(recipientAddress);
     const mintAuthority = mintWallet.publicKey;
 
     const mintPublicKeyObj = await createMint(
@@ -58,6 +57,7 @@ export const createAndTransferToken = async ({
       undefined,
       { commitment }
     );
+    console.log("mintPubKey", mintPublicKeyObj);
     const mintPublicKey = mintPublicKeyObj.toBase58();
 
     const sourceTokenAccount = await getOrCreateAssociatedTokenAccount(
@@ -68,9 +68,10 @@ export const createAndTransferToken = async ({
       false,
       commitment
     );
+    console.log("sourceTokenAccount: ", sourceTokenAccount);
 
-    const mintAmount = BigInt(Math.floor(amount * Math.pow(10, decimals)));
-    await mintTo(
+    const mintAmount = amount * Math.pow(10, decimals);
+    const mint = await mintTo(
       connection,
       mintWallet,
       mintPublicKeyObj,
@@ -80,6 +81,7 @@ export const createAndTransferToken = async ({
       [],
       { commitment }
     );
+    console.log("mint: ", mint);
 
     const recipientTokenAccount = await getOrCreateAssociatedTokenAccount(
       connection,
@@ -89,6 +91,7 @@ export const createAndTransferToken = async ({
       false,
       commitment
     );
+    console.log("recipientTokenAccount: ", recipientTokenAccount);
 
     const transaction = new Transaction().add(
       createTransferInstruction(
@@ -107,6 +110,7 @@ export const createAndTransferToken = async ({
       [mintWallet],
       { commitment }
     );
+    console.log("signature: ", recipientTokenAccount);
 
     console.log(
       `Created token ${mintPublicKey} and transferred ${amount} tokens to ${recipientAddress}`

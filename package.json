@@ -5,7 +5,7 @@
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc -b",
+    "build": "tsc",
     "test": "jest",
     "lint": "eslint .",
     "prepublishOnly": "npm run build"
@@ -46,11 +46,14 @@
     "pnpm": "^10",
     "yarn": "please-use-pnpm"
   },
-  "packageManager": "pnpm@10.5.0",
+  "packageManager": "pnpm@10.7.0",
   "files": [
     "dist/**/*"
   ],
   "dependencies": {
+    "@metaplex-foundation/mpl-token-metadata": "3.4.0",
+    "@metaplex-foundation/umi": "^1.1.1",
+    "@metaplex-foundation/umi-bundle-defaults": "^1.1.1",
     "@solana-developers/helpers": "^2.8.1",
     "@solana/spl-token": "^0.4.13",
     "@solana/web3.js": "^1.98.0"
