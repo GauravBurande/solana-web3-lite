@@ -24,7 +24,7 @@ interface TokenParams {
   commitment?: Commitment;
 }
 
-export const createAndTransferToken = async ({
+const createAndTransferToken = async ({
   mintWallet,
   recipientAddress,
   amount,

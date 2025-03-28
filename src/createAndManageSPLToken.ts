@@ -58,7 +58,7 @@ interface TokenResult {
   };
 }
 
-export const createAndManageSPLToken = async ({
+const createAndManageSPLToken = async ({
   wallet,
   metadata,
   recipientAddress = wallet.publicKey.toBase58(),
